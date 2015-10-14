@@ -52,7 +52,20 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public Student findById(int id) {
-        return null;
+        Student student = new Student();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT nama,alamat FROM student WHERE id=?");
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                student.setNama(resultSet.getString("nama"));
+                student.setAlamat(resultSet.getString("alamat"));
+            }
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return student;
     }
 
     @Override

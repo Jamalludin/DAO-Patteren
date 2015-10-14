@@ -58,13 +58,16 @@ public class MainApp {
                 System.out.println("==============================");
             }*/
 
-            List<MataKuliah> mataKuliahList = mataKuliahDao.findAll();
+            /*List<MataKuliah> mataKuliahList = mataKuliahDao.findAll();
             for(MataKuliah m : mataKuliahList){
                 System.out.println("kode_kul    : "+m.getKodeKuliah());
                 System.out.println("nama_kul    : "+m.getNamaKuliah());
                 System.out.println("sks         : "+m.getSks());
                 System.out.println("===================================");
-            }
+            }*/
+            Student mhs = studentDao.findById(1);
+            System.out.println("Nama : " +mhs.getNama());
+            System.out.println("alamat : "+mhs.getAlamat());
 
 
         } catch (SQLException e) {
