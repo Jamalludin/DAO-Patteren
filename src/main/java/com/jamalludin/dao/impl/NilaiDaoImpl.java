@@ -80,7 +80,21 @@ public class NilaiDaoImpl implements NilaiDao {
 
     @Override
     public Nilai findById(int id) {
-        return null;
+        Nilai nilai = new Nilai();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT kode_kul, nama_kul, nilai FROM nilai WHERE id=?");
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                nilai.setKodeKuliah(resultSet.getInt("kode_kul"));
+                nilai.setNamaKuliah(resultSet.getString("nama_kul"));
+                nilai.setSkor(resultSet.getString("nilai"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return nilai;
+
     }
 
     @Override

@@ -65,9 +65,15 @@ public class MainApp {
                 System.out.println("sks         : "+m.getSks());
                 System.out.println("===================================");
             }*/
-            Student mhs = studentDao.findById(1);
+
+            /*Student mhs = studentDao.findById(1);
             System.out.println("Nama : " +mhs.getNama());
-            System.out.println("alamat : "+mhs.getAlamat());
+            System.out.println("alamat : "+mhs.getAlamat());*/
+
+            Nilai n = nilaiDao.findById(1);
+            System.out.println("kodeKuliah : " +n.getKodeKuliah());
+            System.out.println("namaKuliah : "+n.getNamaKuliah());
+            System.out.println("nilai      :"+n.getSkor());
 
 
         } catch (SQLException e) {
