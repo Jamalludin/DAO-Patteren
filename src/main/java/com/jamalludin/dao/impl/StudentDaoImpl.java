@@ -44,7 +44,8 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public void delete(int id) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM student WHERE id= "+id);
+        PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM student WHERE id= ?");
+        preparedStatement.setInt(1, id);
         preparedStatement.executeUpdate();
 
     }
@@ -63,11 +64,10 @@ public class StudentDaoImpl implements StudentDao {
 
             List<Student> studentList = new ArrayList<>();
             while (resultSet.next()) {
-                Student student = new Student(33, "jamal", "yukum jaya");
-
-                student.setId(resultSet.getInt("ID"));
-                student.setNama(resultSet.getString("Nama"));
-                student.setAlamat(resultSet.getString("Alamat"));
+                Student student = new Student();
+                student.setId(resultSet.getInt("id"));
+                student.setNama(resultSet.getString("nama"));
+                student.setAlamat(resultSet.getString("alamat"));
 
                 studentList.add(student);
             }
