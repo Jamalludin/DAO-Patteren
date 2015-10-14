@@ -77,7 +77,20 @@ public class MataKuliahDaoImpl implements MataKuliahDao{
 
     @Override
     public MataKuliah findById(int id) {
-        return null;
+        MataKuliah mataKuliah = new MataKuliah();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT  nama_kul, sks FROM matakuliah WHERE kode_kul=?");
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                mataKuliah.setNamaKuliah(resultSet.getString("nama_kul"));
+                mataKuliah.setSks(resultSet.getInt("sks"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return mataKuliah;
+
     }
 
     @Override

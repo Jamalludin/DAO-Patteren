@@ -70,10 +70,14 @@ public class MainApp {
             System.out.println("Nama : " +mhs.getNama());
             System.out.println("alamat : "+mhs.getAlamat());*/
 
-            Nilai n = nilaiDao.findById(1);
+            /*Nilai n = nilaiDao.findById(1);
             System.out.println("kodeKuliah : " +n.getKodeKuliah());
             System.out.println("namaKuliah : "+n.getNamaKuliah());
-            System.out.println("nilai      :"+n.getSkor());
+            System.out.println("nilai      :"+n.getSkor());*/
+
+            MataKuliah mk = mataKuliahDao.findById(124322);
+            System.out.println("namaKuliah : "+mk.getNamaKuliah());
+            System.out.println("sks        : "+mk.getSks());
 
 
         } catch (SQLException e) {
