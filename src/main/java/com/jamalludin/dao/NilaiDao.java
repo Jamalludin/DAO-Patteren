@@ -19,4 +19,6 @@ public interface NilaiDao {
     void delete(int id) throws SQLException;
 
     List<Nilai> findAll();
+    Nilai findById(int id);
+    List<Nilai> findByNameLike(String name);
 }

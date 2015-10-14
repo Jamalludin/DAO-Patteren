@@ -60,8 +60,8 @@ public class MainApp {
 
             List<MataKuliah> mataKuliahList = mataKuliahDao.findAll();
             for(MataKuliah m : mataKuliahList){
-                System.out.println("kode_kul    : "+m.getKode_kul());
-                System.out.println("nama_kul    : "+m.getNama_kul());
+                System.out.println("kode_kul    : "+m.getKodeKuliah());
+                System.out.println("nama_kul    : "+m.getNamaKuliah());
                 System.out.println("sks         : "+m.getSks());
                 System.out.println("===================================");
             }

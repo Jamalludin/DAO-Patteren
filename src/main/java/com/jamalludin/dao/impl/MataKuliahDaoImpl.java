@@ -23,8 +23,8 @@ public class MataKuliahDaoImpl implements MataKuliahDao{
     @Override
     public void insert(MataKuliah mataKuliah) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO matakuliah (kode_kul,nama_kul,sks) VALUES (?,?,?)");
-        preparedStatement.setInt(1, mataKuliah.getKode_kul());
-        preparedStatement.setString(2, mataKuliah.getNama_kul());
+        preparedStatement.setInt(1, mataKuliah.getKodeKuliah());
+        preparedStatement.setString(2, mataKuliah.getNamaKuliah());
         preparedStatement.setInt(3, mataKuliah.getSks());
 
         preparedStatement.executeUpdate();
@@ -33,8 +33,8 @@ public class MataKuliahDaoImpl implements MataKuliahDao{
     @Override
     public void update(MataKuliah updatedMataKuliah) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("UPDATE matakuliah SET nama_kul=? WHERE kode_kul=?");
-        preparedStatement.setString(1, updatedMataKuliah.getNama_kul());
-        preparedStatement.setInt(2, updatedMataKuliah.getKode_kul());
+        preparedStatement.setString(1, updatedMataKuliah.getNamaKuliah());
+        preparedStatement.setInt(2, updatedMataKuliah.getKodeKuliah());
 
         preparedStatement.executeUpdate();
 
@@ -58,8 +58,8 @@ public class MataKuliahDaoImpl implements MataKuliahDao{
             List<MataKuliah>mataKuliahList = new ArrayList<>();
             while(resultSet.next()){
                 MataKuliah mataKuliah = new MataKuliah();
-                mataKuliah.setKode_kul(resultSet.getInt("kode_kul"));
-                mataKuliah.setNama_kul(resultSet.getString("nama_kul"));
+                mataKuliah.setKodeKuliah(resultSet.getInt("kode_kul"));
+                mataKuliah.setNamaKuliah(resultSet.getString("nama_kul"));
                 mataKuliah.setSks(resultSet.getInt("sks"));
 
                 mataKuliahList.add(mataKuliah);
@@ -73,5 +73,15 @@ public class MataKuliahDaoImpl implements MataKuliahDao{
             return new ArrayList<>();
 
         }
+    }
+
+    @Override
+    public MataKuliah findById(int id) {
+        return null;
+    }
+
+    @Override
+    public List<MataKuliah> findByNameLike(String name) {
+        return null;
     }
 }

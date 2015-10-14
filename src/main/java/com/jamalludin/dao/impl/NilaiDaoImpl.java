@@ -26,9 +26,9 @@ public class NilaiDaoImpl implements NilaiDao {
     public void insert(Nilai nilai) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO nilai (id,kode_kul,nama_kul,nilai) VALUES (?,?,?,?)");
         preparedStatement.setInt(1, nilai.getId());
-        preparedStatement.setInt(2, nilai.getKode_kul());
-        preparedStatement.setString(3, nilai.getNama_kul());
-        preparedStatement.setString(4, nilai.getNilai());
+        preparedStatement.setInt(2, nilai.getKodeKuliah());
+        preparedStatement.setString(3, nilai.getNamaKuliah());
+        preparedStatement.setString(4, nilai.getSkor());
 
         preparedStatement.executeUpdate();
 
@@ -37,7 +37,7 @@ public class NilaiDaoImpl implements NilaiDao {
     @Override
     public void update(Nilai updatedNilai) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("UPDATE nilai SET nilai=? WHERE id=?");
-        preparedStatement.setString(1, updatedNilai.getNilai());
+        preparedStatement.setString(1, updatedNilai.getSkor());
         preparedStatement.setInt(2, updatedNilai.getId());
 
         preparedStatement.executeUpdate();
@@ -63,9 +63,9 @@ public class NilaiDaoImpl implements NilaiDao {
             while (resultSet.next()){
                 Nilai nilai = new Nilai();
                 nilai.setId(resultSet.getInt("id"));
-                nilai.setKode_kul(resultSet.getInt("kode_kul"));
-                nilai.setNama_kul(resultSet.getString("nama_kul"));
-                nilai.setNilai(resultSet.getString("nilai"));
+                nilai.setKodeKuliah(resultSet.getInt("kode_kul"));
+                nilai.setNamaKuliah(resultSet.getString("nama_kul"));
+                nilai.setSkor(resultSet.getString("nilai"));
 
                 nilaiList.add(nilai);
             }
@@ -76,5 +76,15 @@ public class NilaiDaoImpl implements NilaiDao {
 
         }
 
+    }
+
+    @Override
+    public Nilai findById(int id) {
+        return null;
+    }
+
+    @Override
+    public List<Nilai> findByNameLike(String name) {
+        return null;
     }
 }

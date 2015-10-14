@@ -14,4 +14,6 @@ public interface MataKuliahDao {
     void update (MataKuliah updatedMataKuliah) throws  SQLException;
     void delete (int id) throws SQLException;
     List<MataKuliah> findAll();
+    MataKuliah findById(int id);
+    List<MataKuliah> findByNameLike(String name);
 }
