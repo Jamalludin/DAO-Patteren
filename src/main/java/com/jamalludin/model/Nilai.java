@@ -7,16 +7,16 @@ public class Nilai {
     private int id;
     private Student student;
     private MataKuliah mataKuliah;
-    private String skor;
+    private String nilai;
 
     public Nilai() {
     }
 
-    public Nilai(int id, Student student, MataKuliah mataKuliah, String skor) {
+    public Nilai(int id, Student student, MataKuliah mataKuliah, String nilai) {
         this.id = id;
         this.student = student;
         this.mataKuliah = mataKuliah;
-        this.skor = skor;
+        this.nilai = nilai;
     }
 
     public int getId() {
@@ -43,11 +43,11 @@ public class Nilai {
         this.mataKuliah = mataKuliah;
     }
 
-    public String getSkor() {
-        return skor;
+    public String getNilai() {
+        return nilai;
     }
 
-    public void setSkor(String skor) {
-        this.skor = skor;
+    public void setNilai(String nilai) {
+        this.nilai = nilai;
     }
 }
