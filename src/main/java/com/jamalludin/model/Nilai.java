@@ -5,17 +5,17 @@ package com.jamalludin.model;
  */
 public class Nilai {
     private int id;
-    private int kode;
-    private String nama;
+    private Student student;
+    private MataKuliah mataKuliah;
     private String skor;
 
     public Nilai() {
     }
 
-    public Nilai(int id, int kodeKuliah, String namaKuliah, String skor) {
+    public Nilai(int id, Student student, MataKuliah mataKuliah, String skor) {
         this.id = id;
-        this.kode = kodeKuliah;
-        this.nama = namaKuliah;
+        this.student = student;
+        this.mataKuliah = mataKuliah;
         this.skor = skor;
     }
 
@@ -27,20 +27,20 @@ public class Nilai {
         this.id = id;
     }
 
-    public int getKodeKuliah() {
-        return kode;
+    public Student getStudent() {
+        return student;
     }
 
-    public void setKodeKuliah(int kodeKuliah) {
-        this.kode = kodeKuliah;
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
-    public String getNamaKuliah() {
-        return nama;
+    public MataKuliah getMataKuliah() {
+        return mataKuliah;
     }
 
-    public void setNamaKuliah(String namaKuliah) {
-        this.nama = namaKuliah;
+    public void setMataKuliah(MataKuliah mataKuliah) {
+        this.mataKuliah = mataKuliah;
     }
 
     public String getSkor() {
