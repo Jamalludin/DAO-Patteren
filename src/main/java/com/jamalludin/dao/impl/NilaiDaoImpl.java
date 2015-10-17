@@ -1,6 +1,7 @@
 package com.jamalludin.dao.impl;
 
 import com.jamalludin.dao.NilaiDao;
+import com.jamalludin.model.MataKuliah;
 import com.jamalludin.model.Nilai;
 import com.jamalludin.model.Student;
 
@@ -26,9 +27,9 @@ public class NilaiDaoImpl implements NilaiDao {
     public void insert(Nilai nilai) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO nilai (id,kode_kul,nama_kul,nilai) VALUES (?,?,?,?)");
         preparedStatement.setInt(1, nilai.getId());
-        preparedStatement.setInt(2, nilai.getKodeKuliah());
-        preparedStatement.setString(3, nilai.getNamaKuliah());
-        preparedStatement.setString(4, nilai.getSkor());
+        preparedStatement.setInt(2, nilai.getMataKuliah().getKode());
+        preparedStatement.setString(3, nilai.getMataKuliah().getNama());
+        preparedStatement.setString(4, nilai.getNilai());
 
         preparedStatement.executeUpdate();
 
@@ -37,7 +38,7 @@ public class NilaiDaoImpl implements NilaiDao {
     @Override
     public void update(Nilai updatedNilai) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("UPDATE nilai SET nilai=? WHERE id=?");
-        preparedStatement.setString(1, updatedNilai.getSkor());
+        preparedStatement.setString(1, updatedNilai.getNilai());
         preparedStatement.setInt(2, updatedNilai.getId());
 
         preparedStatement.executeUpdate();
@@ -56,16 +57,18 @@ public class NilaiDaoImpl implements NilaiDao {
     public List<Nilai> findAll() {
 
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id,kode_kul,nama_kul,nilai FROM nilai");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT n.id,s.student_id as student_id, s.nama as student_name,mk.mata_kuliah_kode, mk.nama_kuliah as matakuliah_name,n.nilai, mk.sks FROM nilai n\n" +
+                    "  INNER JOIN matakuliah mk ON mk.mata_kuliah_kode = n.mata_kuliah_kode\n" +
+                    "  INNER JOIN student s ON s.student_id = n.student_id");
             ResultSet resultSet = preparedStatement.executeQuery();
 
             List<Nilai>nilaiList = new ArrayList<>();
             while (resultSet.next()){
+                Student s = new Student();
+                MataKuliah mk = new MataKuliah();
                 Nilai nilai = new Nilai();
-                nilai.setId(resultSet.getInt("id"));
-                nilai.setKodeKuliah(resultSet.getInt("kode_kul"));
-                nilai.setNamaKuliah(resultSet.getString("nama_kul"));
-                nilai.setSkor(resultSet.getString("nilai"));
+                s.setId(resultSet.getInt("student_id"));
+                nilai.setStudent(s);
 
                 nilaiList.add(nilai);
             }
@@ -82,13 +85,11 @@ public class NilaiDaoImpl implements NilaiDao {
     public Nilai findById(int id) {
         Nilai nilai = new Nilai();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT kode_kul, nama_kul, nilai FROM nilai WHERE id=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT kode_kuliah, nama_kuliah, nilai FROM nilai WHERE idbr=?");
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                nilai.setKodeKuliah(resultSet.getInt("kode_kul"));
-                nilai.setNamaKuliah(resultSet.getString("nama_kul"));
-                nilai.setSkor(resultSet.getString("nilai"));
+                nilai.setNilai(resultSet.getString("nilai"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

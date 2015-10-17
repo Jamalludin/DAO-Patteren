@@ -22,9 +22,9 @@ public class MataKuliahDaoImpl implements MataKuliahDao{
 
     @Override
     public void insert(MataKuliah mataKuliah) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO matakuliah (kode_kul,nama_kul,sks) VALUES (?,?,?)");
-        preparedStatement.setInt(1, mataKuliah.getKodeKuliah());
-        preparedStatement.setString(2, mataKuliah.getNamaKuliah());
+        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO matakuliah (mata_kuliah_kode,nama_kuliah,sks) VALUES (?,?,?)");
+        preparedStatement.setInt(1, mataKuliah.getKode());
+        preparedStatement.setString(2, mataKuliah.getNama());
         preparedStatement.setInt(3, mataKuliah.getSks());
 
         preparedStatement.executeUpdate();
@@ -32,9 +32,9 @@ public class MataKuliahDaoImpl implements MataKuliahDao{
 
     @Override
     public void update(MataKuliah updatedMataKuliah) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("UPDATE matakuliah SET nama_kul=? WHERE kode_kul=?");
-        preparedStatement.setString(1, updatedMataKuliah.getNamaKuliah());
-        preparedStatement.setInt(2, updatedMataKuliah.getKodeKuliah());
+        PreparedStatement preparedStatement = connection.prepareStatement("UPDATE matakuliah SET nama_kuliah=? WHERE mata_kuliah_kode=?");
+        preparedStatement.setString(1, updatedMataKuliah.getNama());
+        preparedStatement.setInt(2, updatedMataKuliah.getKode());
 
         preparedStatement.executeUpdate();
 
@@ -43,7 +43,7 @@ public class MataKuliahDaoImpl implements MataKuliahDao{
 
     @Override
     public void delete(int id) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM matakuliah WHERE kode_kul=?");
+        PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM matakuliah WHERE mata_kuliah_kode=?");
         preparedStatement.setInt(1, id);
         preparedStatement.executeUpdate();
 
@@ -53,13 +53,13 @@ public class MataKuliahDaoImpl implements MataKuliahDao{
     public List<MataKuliah> findAll() {
 
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT kode_kul, nama_kul, sks FROM matakuliah");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT mata_kuliah_kode, nama_kuliah, sks FROM matakuliah");
             ResultSet resultSet = preparedStatement.executeQuery();
             List<MataKuliah>mataKuliahList = new ArrayList<>();
             while(resultSet.next()){
                 MataKuliah mataKuliah = new MataKuliah();
-                mataKuliah.setKodeKuliah(resultSet.getInt("kode_kul"));
-                mataKuliah.setNamaKuliah(resultSet.getString("nama_kul"));
+                mataKuliah.setKode(resultSet.getInt("kode_kul"));
+                mataKuliah.setNama(resultSet.getString("nama_kul"));
                 mataKuliah.setSks(resultSet.getInt("sks"));
 
                 mataKuliahList.add(mataKuliah);
@@ -79,11 +79,11 @@ public class MataKuliahDaoImpl implements MataKuliahDao{
     public MataKuliah findById(int id) {
         MataKuliah mataKuliah = new MataKuliah();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT  nama_kul, sks FROM matakuliah WHERE kode_kul=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT  nama_kuliah, sks FROM matakuliah WHERE mata_kuliah_kode=?");
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                mataKuliah.setNamaKuliah(resultSet.getString("nama_kul"));
+                mataKuliah.setNama(resultSet.getString("nama_kuliah"));
                 mataKuliah.setSks(resultSet.getInt("sks"));
             }
         } catch (SQLException e) {

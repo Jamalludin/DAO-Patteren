@@ -11,26 +11,26 @@ public class MataKuliah {
     public MataKuliah() {
     }
 
-    public MataKuliah(int kodeKuliah, String namaKuliah, int sks) {
-        this.kode = kodeKuliah;
-        this.nama = namaKuliah;
+    public MataKuliah(int kode, String nama, int sks) {
+        this.kode = kode;
+        this.nama = nama;
         this.sks = sks;
     }
 
-    public int getKodeKuliah() {
+    public int getKode() {
         return kode;
     }
 
-    public void setKodeKuliah(int kodeKuliah) {
-        this.kode = kodeKuliah;
+    public void setKode(int kode) {
+        this.kode = kode;
     }
 
-    public String getNamaKuliah() {
+    public String getNama() {
         return nama;
     }
 
-    public void setNamaKuliah(String namaKuliah) {
-        this.nama = namaKuliah;
+    public void setNama(String nama) {
+        this.nama = nama;
     }
 
     public int getSks() {

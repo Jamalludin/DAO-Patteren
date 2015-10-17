@@ -76,7 +76,7 @@ public class MainApp {
             System.out.println("nilai      :"+n.getSkor());*/
 
             MataKuliah mk = mataKuliahDao.findById(124322);
-            System.out.println("namaKuliah : "+mk.getNamaKuliah());
+            System.out.println("namaKuliah : "+mk.getNama());
             System.out.println("sks        : "+mk.getSks());
 
 
