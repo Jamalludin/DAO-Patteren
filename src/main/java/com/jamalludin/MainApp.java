@@ -21,7 +21,7 @@ public class MainApp {
     public static void main(String[] args) {
         //Student jamal = new Student(9, "Jamal Jack", "yukum jaya");
         //Student jesika = new Student(3, "jesika adelia", "bandar jaya barat");
-        //Nilai jamal= new Nilai(3, 1234432, "KDJK", "A");
+        //Nilai jamal= new Nilai(7, 1234411, "PAM", "A");
         //Nilai jamal = new Nilai(3, 1234432, "KDJK", "B");
         //MataKuliah jamal = new MataKuliah(124327, "sertifikasi", 3);
 
@@ -49,7 +49,7 @@ public class MainApp {
                 System.out.println("============================");
             }*/
 
-            List<Nilai> nilaiList = nilaiDao.findAll();
+            /*List<Nilai> nilaiList = nilaiDao.findAll();
             for (Nilai n : nilaiList){
                 System.out.println("id       : "+n.getId());
                 System.out.println("nama     : "+n.getStudent().getNama());
@@ -57,7 +57,7 @@ public class MainApp {
                 System.out.println("nama_kul : "+n.getMataKuliah().getNama());
                 System.out.println("nilai    : "+n.getNilai());
                 System.out.println("==============================");
-            }
+            }*/
 
             /*List<MataKuliah> mataKuliahList = mataKuliahDao.findAll();
             for(MataKuliah m : mataKuliahList){
@@ -71,10 +71,10 @@ public class MainApp {
             System.out.println("Nama : " +mhs.getNama());
             System.out.println("alamat : "+mhs.getAlamat());*/
 
-            /*Nilai n = nilaiDao.findById(1);
-            System.out.println("kodeKuliah : " +n.getKodeKuliah());
-            System.out.println("namaKuliah : "+n.getNamaKuliah());
-            System.out.println("nilai      :"+n.getSkor());*/
+            Nilai n = nilaiDao.findById(1);
+            System.out.println("kodeKuliah : " +n.getMataKuliah().getKode());
+            //System.out.println("namaKuliah : "+n.getMataKuliah().getNama());
+            System.out.println("nilai      :"+n.getNilai());
 
             /*MataKuliah mk = mataKuliahDao.findById(124322);
             System.out.println("namaKuliah : "+mk.getNama());
