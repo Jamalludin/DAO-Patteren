@@ -49,14 +49,15 @@ public class MainApp {
                 System.out.println("============================");
             }*/
 
-            /*List<Nilai> nilaiList = nilaiDao.findAll();
+            List<Nilai> nilaiList = nilaiDao.findAll();
             for (Nilai n : nilaiList){
                 System.out.println("id       : "+n.getId());
-                System.out.println("kode_kul : "+n.getKode_kul());
-                System.out.println("nama_kul : "+n.getNama_kul());
+                System.out.println("nama     : "+n.getStudent().getNama());
+                System.out.println("kode_kul : "+n.getMataKuliah().getKode());
+                System.out.println("nama_kul : "+n.getMataKuliah().getNama());
                 System.out.println("nilai    : "+n.getNilai());
                 System.out.println("==============================");
-            }*/
+            }
 
             /*List<MataKuliah> mataKuliahList = mataKuliahDao.findAll();
             for(MataKuliah m : mataKuliahList){
@@ -75,9 +76,9 @@ public class MainApp {
             System.out.println("namaKuliah : "+n.getNamaKuliah());
             System.out.println("nilai      :"+n.getSkor());*/
 
-            MataKuliah mk = mataKuliahDao.findById(124322);
+            /*MataKuliah mk = mataKuliahDao.findById(124322);
             System.out.println("namaKuliah : "+mk.getNama());
-            System.out.println("sks        : "+mk.getSks());
+            System.out.println("sks        : "+mk.getSks());*/
 
 
         } catch (SQLException e) {

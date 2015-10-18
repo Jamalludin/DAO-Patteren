@@ -57,18 +57,28 @@ public class NilaiDaoImpl implements NilaiDao {
     public List<Nilai> findAll() {
 
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT n.id,s.student_id as student_id, s.nama as student_name,mk.mata_kuliah_kode, mk.nama_kuliah as matakuliah_name,n.nilai, mk.sks FROM nilai n\n" +
-                    "  INNER JOIN matakuliah mk ON mk.mata_kuliah_kode = n.mata_kuliah_kode\n" +
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT n.id,s.student_id , s.nama as student_name,mk.mata_kuliah_kode, mk.nama_kuliah as matakuliah_name,n.nilai, mk.sks FROM nilai n" +
+                    "  INNER JOIN matakuliah mk ON mk.mata_kuliah_kode = n.mata_kuliah_kode" +
                     "  INNER JOIN student s ON s.student_id = n.student_id");
             ResultSet resultSet = preparedStatement.executeQuery();
 
             List<Nilai>nilaiList = new ArrayList<>();
             while (resultSet.next()){
+
                 Student s = new Student();
                 MataKuliah mk = new MataKuliah();
                 Nilai nilai = new Nilai();
+
+                nilai.setId(resultSet.getInt("id"));
                 s.setId(resultSet.getInt("student_id"));
+                s.setNama(resultSet.getString("student_name"));
+                mk.setKode(resultSet.getInt("mata_kuliah_kode"));
+                mk.setNama(resultSet.getString("matakuliah_name"));
+                nilai.setNilai(resultSet.getString("nilai"));
+                mk.setSks(resultSet.getInt("sks"));
+
                 nilai.setStudent(s);
+                nilai.setMataKuliah(mk);
 
                 nilaiList.add(nilai);
             }
@@ -83,11 +93,12 @@ public class NilaiDaoImpl implements NilaiDao {
 
     @Override
     public Nilai findById(int id) {
-        Nilai nilai = new Nilai();
+        Nilai nilai = null;
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT kode_kuliah, nama_kuliah, nilai FROM nilai WHERE idbr=?");
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
+            Nilai n = new Nilai();
             while (resultSet.next()) {
                 nilai.setNilai(resultSet.getString("nilai"));
             }

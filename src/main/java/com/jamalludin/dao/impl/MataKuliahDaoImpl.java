@@ -76,11 +76,11 @@ public class MataKuliahDaoImpl implements MataKuliahDao{
     }
 
     @Override
-    public MataKuliah findById(int id) {
+    public MataKuliah findById(int kode) {
         MataKuliah mataKuliah = new MataKuliah();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT  nama_kuliah, sks FROM matakuliah WHERE mata_kuliah_kode=?");
-            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(1, kode);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 mataKuliah.setNama(resultSet.getString("nama_kuliah"));
